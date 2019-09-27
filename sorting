@@ -1,0 +1,26 @@
+set -x
+echo "Enter the numbers separated by spaces"
+read -a array
+
+echo ${#array[@]}
+exit 1
+j=0
+
+for (( i = 0; i < ${#array[@]}; i++ ))
+do
+	for (( j = $i; j < ${#array[@]}; j++ ))
+	do
+		echo $i
+		echo ${array[$j]}
+		num1=${array[$i]}
+		num2=${array[$j]}
+
+		if [[ $num1 -ge $num2 ]]
+		then
+			array[$j]=$num2
+			array[$j+1]=$num1
+		fi
+	done
+done
+
+echo ${array[*]}
